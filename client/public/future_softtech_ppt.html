@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Future SoftTech - Engineering Tomorrow's Intelligence</title>
+    <link rel="stylesheet" href="profile/css/base.css">
+    <link rel="stylesheet" href="profile/css/layout.css">
+    <link rel="stylesheet" href="profile/css/slide.css">
+    <link rel="stylesheet" href="profile/css/components.css">
+    <link rel="stylesheet" href="profile/css/navigation.css">
+    <link rel="stylesheet" href="profile/css/responsive.css">
+    <link rel="stylesheet" href="profile/css/audio.css">
+    <style>
+        .slide-logo { filter: hue-rotate(150deg) saturate(.78) brightness(.92) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35)); }
+        .mobile-device .slide { -webkit-overflow-scrolling: touch; }
+        .mobile .slide-content { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+        .mobile .bullet-points, .mobile .service-content, .mobile .contact-item { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }
+    </style>
+</head>
+<body>
+    <div class="audio-start-message" id="audioStartMessage">
+        <div class="message-content">
+            <div class="audio-icon-large">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="sound-wave" d="M3 10V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="sound-wave" d="M7 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="sound-wave" d="M11 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="sound-wave" d="M15 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="sound-wave" d="M19 10V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h3 id="startMessageHeading">Audio Narration Available</h3>
+            <p id="startMessage">Click on Start Reading</p>
+        </div>
+    </div>
+
+    <div class="audio-controls" id="audioControls">
+        <div class="audio-header">
+            <div class="header-left">
+                <div class="audio-icon">🎵</div>
+                <div class="audio-title">Audio Panel</div>
+            </div>&nbsp;&nbsp;&nbsp;
+            <div class="header-controls">
+                <button class="control-btn minimize-btn" id="minimizeBtn" onclick="toggleMinimize()" title="Minimize/Maximize">−</button>
+                
+            </div>
+        </div>
+        <div class="audio-content" id="audioContent">
+            <button class="audio-button" id="autoReadBtn" onclick="startReading()">
+                <span class="button-icon">▶</span>
+                Start Reading
+            </button>
+            <div class="language-selector">
+                <button class="lang-btn active" id="englishBtn" onclick="setLanguage('english')">EN</button>
+                <button class="lang-btn" id="hindiBtn" onclick="setLanguage('hindi')">हिन्दी</button>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-audio-control" id="mobileAudioControl">
+        <button class="mobile-nav-btn" id="mobilePrevBtn" onclick="previousSlide()" aria-label="Previous slide">‹</button>
+        
+        <button class="mobile-nav-btn" id="mobileNextBtn" onclick="nextSlide()" aria-label="Next slide">›</button>
+        
+        <button class="mobile-audio-btn" id="mobileReadBtn" onclick="startReading()">
+            <span class="mobile-btn-icon">▶</span>
+            <span class="mobile-btn-text">Play</span>
+        </button>
+    </div>
+
+    <div class="presentation-container">
+        <div class="presentation-header">
+            <div class="header-left">
+                <div class="logo" role="img" aria-label="Future SoftTech Logo"></div>
+                <div class="presentation-title">Future SoftTech - Engineering Tomorrow's Intelligence</div>
+            </div>
+            <div class="slide-counter">
+                <span id="current-slide">1</span> / <span id="total-slides">14</span>
+            </div>
+        </div>
+
+        <div class="slide-area" role="main">
+            <div class="slide active" role="tabpanel" aria-label="Cover slide" data-section="slide1">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h1 data-translate="s1-h1">Future SoftTech</h1>
+                    <div class="subtitle" data-translate="s1-subtitle">"Engineering Tomorrow's Intelligence"</div>
+                    <div class="professional-images">
+                        <div class="professional-image"><img src="profile/images/office1.jpg" alt="Digital Technology Network" /></div>
+                        <div class="professional-image"><img src="profile/images/office2.jpg" alt="AI Innovation" /></div>
+                        <div class="professional-image"><img src="profile/images/office3.jpg" alt="Business Intelligence" /></div>
+                    </div>
+                    <div class="website">🌐 future-softtech.co.in</div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Vision slide" data-section="slide2">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s2-h2">Vision & Mission</h2>
+                    <div class="services-table">
+                        <div class="service-row"><div class="service-icon"></div>
+                            <div class="service-content">
+                                <div class="service-title">
+                                    <span class="vision-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg><span data-translate="s2-vision-title">Our Vision</span></span>
+                                </div>
+                                <div>
+                                    <ul class="bullet-points">
+                                        <li style="font-size: 1.17em;color: #fff; text-align: justify;" data-translate="s2-vision-li1">Our vision is to become a global leader in providing intelligent technology ecosystems that redefine how industries operate.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s2-vision-li2">We aspire to create a digital-first world where businesses in Banking, Pharma, Finance, Retail with other sectors can seamlessly innovate, scale without limits, and earn the trust of their customers.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s2-vision-li3">By fostering inclusivity, transparency, and resilience in technology, we aim to eliminate barriers to growth, enable smarter decision-making, and build a sustainable future where enterprises thrive in harmony with society and innovation.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s2-vision-li4">To be the trusted partner for digital journeys, combining enterprise-grade solutions, domain expertise, and a global network of skilled professionals – enabling clients to innovate faster, scale confidently, and stay future-ready.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Mission slide" data-section="slide3">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s3-h2">Vision & Mission</h2>
+                    <div class="services-table">
+                        <div class="service-row"><div class="service-icon"></div>
+                            <div class="service-content">
+                                <div class="service-title">
+                                    <span class="mission-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span data-translate="s3-mission-title">Our Mission</span></span>
+                                </div>
+                                <div>
+                                    <ul class="bullet-points">
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s3-mission-li1">Our mission is to empower enterprises in Banking, Pharma, Finance, Retail and other sectors with future-ready technology infrastructure that is intelligent, scalable, and secure.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s3-mission-li2">We strive to bridge the gap between traditional systems and modern digital platforms by delivering cloud-native, AI-driven, and automation-enabled solutions. Our goal is to help businesses streamline operations, ensure regulatory compliance, safeguard sensitive data, and drive customer-centric innovation.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s3-mission-li3">By combining deep domain expertise with cutting-edge technology, we can enable our clients to reduce risks, increase efficiency, and accelerate their journey towards digital transformation.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s3-mission-li4">To empower enterprises in Banking, Pharma, Finance, and Retail with intelligent, scalable, and secure digital solutions – supported by skilled technology resources that ensure rapid execution, compliance, and measurable business impact.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide" role="tabpanel" aria-label="Core Values slide" data-section="slide4">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s4-h2">Core Values</h2>
+                    <div class="services-table">
+                        <div class="service-row"><div class="service-content">
+                            <div>
+                                <ul class="bullet-points">
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s4-li1">Innovation at Core – Continuous research and adoption of AI, cloud, and data-driven technologies.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s4-li2">Security & Compliance First – Adhering to industry standards to protect critical data.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s4-li3">Customer-Centricity – Designing solutions around client needs to deliver measurable business impact.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s4-li4">Agility & Scalability – Building modular systems that grow with the business.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s4-li5">Collaboration & Trust – Long-term partnerships built on transparency and reliability.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s4-li6">Continuously improving and upgrading our products to suit the changing dynamics and demographics of the market.</li>
+                                </ul>
+                            </div>
+                        </div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Problem Statement slide" data-section="slide5">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s5-h2">Problem Statement</h2>
+                    <div class="problem-grid">
+                        <div class="problem-item">
+                            <span class="icon" role="img" aria-label="Fragmented systems">🔗</span>
+                            <h3 data-translate="s5-h3-1">Fragmented Tech Stacks</h3>
+                            <div>
+                                <ul class="bullet-points">
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-frag-li1">High Maintenance Cost → Different stacks require specialized skills, updates, and licenses.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-frag-li2">Poor Scalability → Hard to standardize processes or scale applications across teams.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-frag-li3">Data Silos → Information is scattered, preventing a single source of truth.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-frag-li4">Slower Innovation → Developers waste time on compatibility issues instead of building features.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-frag-li5">Collaboration & Trust – Establishing long-term partnerships remains challenging.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-frag-li6">Security Risks → Multiple uncoordinated systems increase vulnerabilities.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="problem-item">
+                            <span class="icon" role="img" aria-label="Manual processes">🏢</span>
+                            <h3 data-translate="s5-h3-2">Manual Processes</h3>
+                            <div>
+                                <ul class="bullet-points">
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-man-li1">Time-Consuming → Slows down decision-making and service delivery.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-man-li2">Error-Prone → High risk of human mistakes in data entry, compliance, or reporting.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-man-li3">Inconsistent Quality → Outcomes vary depending on who executes the process.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-man-li4">Lack of Visibility → Manual steps are hard to track, monitor, or audit in real time.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-man-li5">Scalability Issues → Manual work doesn't scale as business grows.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="problem-item">
+                            <span class="icon" role="img" aria-label="Lack of visibility">🕵️‍♂️</span>
+                            <h3 data-translate="s5-h3-3">Lack of Visibility</h3>
+                            <div>
+                                <ul class="bullet-points">
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-vis-li1">Poor Decision-Making → Leaders act on outdated or incomplete information.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-vis-li2">Data Silos → Teams operate in isolation without a unified source of truth.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-vis-li3">Delayed Issue Detection → Problems are noticed only after they escalate.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-vis-li4">Compliance Challenges → Limited audit trails and reporting gaps.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s5-vis-li5">Customer Experience Impact → Clients face delays, errors, and inconsistent service.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Our Solution slide" data-section="slide6">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s6-h2">Our Solution and what we offer</h2>
+                    <div class="solution-grid">
+                        <div class="solution-item">
+                            <span class="icon" role="img" aria-label="Custom software">🧩</span>
+                            <h3 data-translate="s6-h3-1">Custom Software</h3>
+                            <div>
+                                <ul class="bullet-points">
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-cust-li1">Fit-for-Purpose → Designed specifically for your business model, industry standards, and customer needs.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-cust-li2">Scalability → Grows with your organization, avoiding costly migrations later.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-cust-li3">Integration-Friendly → Seamlessly connects with existing systems, removing silos.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-cust-li4">Efficiency Gains → Automates complex tasks and reduces reliance on manual processes.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-cust-li5">Competitive Advantage → Provides unique features that off-the-shelf solutions can't deliver.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="solution-item">
+                            <span class="icon" role="img" aria-label="AI automation">⚡</span>
+                            <h3 data-translate="s6-h3-2">AI-Powered Automation</h3>
+                            <div>
+                                <ul class="bullet-points">
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-ai-li1">Speed & Efficiency → Reduces process cycle times from days to minutes.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-ai-li2">Accuracy → Minimizes human errors in critical workflows like compliance checks, approvals, and document processing.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-ai-li3">Scalability → Automation scales easily as business grows without proportional cost increases.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-ai-li4">Real-Time Insights → AI learns patterns, predicts outcomes, and provides decision support.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-ai-li5">Employee Productivity → Frees teams from mundane tasks so they can focus on innovation and strategy.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="solution-item">
+                            <span class="icon" role="img" aria-label="Secure infrastructure">🔒</span>
+                            <h3 data-translate="s6-h3-3">Secure Infrastructure</h3>
+                            <div>
+                                <ul class="bullet-points">
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-sec-li1">Cloud & On-Prem Infrastructure Security → Firewalls, intrusion detection, and encryption.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-sec-li2">Identity & Access Management (IAM) → Secure authentication and role-based access control.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-sec-li3">Regulatory Compliance → GDPR, HIPAA, PCI-DSS, RBI, SEBI and other standards.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-sec-li4">Disaster Recovery & Business Continuity → Redundant systems, backup, and failover solutions.</li>
+                                    <li style="font-size: 1.17em;color: #fff;" data-translate="s6-sec-li5">Proactive Monitoring & Threat Detection → AI-driven monitoring for real-time alerts.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Prior Engagements slide" data-section="slide7">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s7-h2">Prior Engagements in BFSI</h2>
+                    <div class="vision-mission">
+                        <div class="vm-card">
+                            <div class="vm-icon" role="img" aria-label="Partnership">🤝</div>
+                            <div class="vm-title" data-translate="s7-card1-title">Extended Delivery Partner</div>
+                            <div data-translate="s7-card1-desc">Supporting service provider in BFSI domain</div>
+                        </div>
+                        <div class="vm-card">
+                            <div class="vm-icon" role="img" aria-label="Professionals">👨‍💻</div>
+                            <div class="vm-title" data-translate="s7-card2-title">Skilled Professionals</div>
+                            <div data-translate="s7-card2-desc">Dedicated team of experts across multiple technologies</div>
+                        </div>
+                        <div class="vm-card">
+                            <div class="vm-icon" role="img" aria-label="Technology">💻</div>
+                            <div class="vm-title" data-translate="s7-card3-title">Tech Stack Expertise</div>
+                            <div data-translate="s7-card3-desc">Java, .NET, Database, Testing, L1-L3 Support</div>
+                        </div>
+                        <div class="vm-card">
+                            <div class="vm-icon" role="img" aria-label="Banking">🏦</div>
+                            <div class="vm-title" data-translate="s7-card4-title">BFSI Domain Exposure</div>
+                            <div data-translate="s7-card4-desc">BFSI, Insurance, Digital Platforms</div>
+                        </div>
+                        <div class="vm-card">
+                            <div class="vm-icon" role="img" aria-label="Performance">⏱️</div>
+                            <div class="vm-title" data-translate="s7-card5-title">Performance & SLA</div>
+                            <div data-translate="s7-card5-desc">SLA compliance, faster resolution cycles, improved efficiency</div>
+                        </div>
+                        <div class="vm-card">
+                            <div class="vm-icon" role="img" aria-label="Development">🎯</div>
+                            <div class="vm-title" data-translate="s7-card6-title">Application Development</div>
+                            <div data-translate="s7-card6-desc">Full-cycle development and production support services</div>
+                        </div>
+                    </div>
+                    <div class="website" style="background: linear-gradient(135deg, #9d7fe8, #4a36ba); margin-top: 30px;" data-translate="s7-footer">
+                        📌 Proven BFSI expertise – now offered directly to our clients
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Core Services slide" data-section="slide8">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s8-h2">Target Core Services</h2>
+                    <div class="services-table">
+                        <div class="service-row">
+                            <div class="service-icon" role="img" aria-label="Development">💻</div>
+                            <div class="service-content">
+                                <div class="service-title" data-translate="s8-serv1-title">Backend & Frontend Development</div>
+                                <div data-translate="s8-serv1-desc">Java, Spring Boot, Microservices, JPA, Hibernate, Python, Angular JS, ReactJs</div>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div class="service-icon" role="img" aria-label="Testing">💻</div>
+                            <div class="service-content">
+                                <div class="service-title" data-translate="s8-serv2-title">Testing service</div>
+                                <div data-translate="s8-serv2-desc">Quality Assurance & Testing, Test Automation, Industry-Focused Software Testing Training</div>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div class="service-icon" role="img" aria-label="Infrastructure">🌐</div>
+                            <div class="service-content">
+                                <div class="service-title" data-translate="s8-serv3-title">Infrastructure Management</div>
+                                <div data-translate="s8-serv3-desc">Ubuntu, Apache/Nginx, SSL, DNS, Firewall, Remote Access</div>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div class="service-icon" role="img" aria-label="Automation">🤖</div>
+                            <div class="service-content">
+                                <div class="service-title" data-translate="s8-serv4-title">Automation & AI Integration</div>
+                                <div data-translate="s8-serv4-desc">Cron jobs, monitoring dashboards, AI-powered solutions</div>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div class="service-icon" role="img" aria-label="Design">🎨</div>
+                            <div class="service-content">
+                                <div class="service-title" data-translate="s8-serv5-title">System Design</div>
+                                <div data-translate="s8-serv5-desc">Scalable architecture, brand-aware UX design</div>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div class="service-icon" role="img" aria-label="Troubleshooting">🛠️</div>
+                            <div class="service-content">
+                                <div class="service-title" data-translate="s8-serv6-title">Troubleshooting</div>
+                                <div data-translate="s8-serv6-desc">IDE, server, deployment, and network issue resolution</div>
+                            </div>
+                        </div>
+                        <div class="service-row">
+                            <div class="service-icon" role="img" aria-label="Staff augmentation">👨‍💻</div>
+                            <div class="service-content">
+                                <div class="service-title" data-translate="s8-serv7-title">Staff Augmentation</div>
+                                <div data-translate="s8-serv7-desc">On-demand tech talent augmentation for enterprise projects.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Competitive Advantage slide" data-section="slide9">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s9-h2">Competitive Advantage</h2>
+                    <div class="advantages-grid">
+                        <div class="advantage-item">
+                            <div><span class="advantage-icon" role="img" aria-label="Deep expertise">🧠</span>
+                                <span style=" margin-bottom: 10px;font-size: 1.45rem;" data-translate="s9-adv1-title">Deep Functional and Domain Expertise</span><br><br>
+                                <div>
+                                    <ul class="bullet-points">
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s9-adv1-li1">Beyond technical skills, we bring in-depth knowledge of business functions and industry domains such as Banking, Finance, Insurance, Pharma, and Retail.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s9-adv1-li2">This ensures our solutions are not just technically sound but also aligned with regulatory, operational, and customer-specific needs.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="advantage-item">
+                            <div><span class="advantage-icon" role="img" aria-label="Automation">⚙️</span>
+                                <span style=" margin-bottom: 10px;font-size: 1.45rem;" data-translate="s9-adv2-title">Automation-First Mindset</span><br><br>
+                                <div>
+                                    <ul class="bullet-points">
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s9-adv2-li1">We approach every solution with an automation-first philosophy, ensuring that repetitive, error-prone, and manual processes are streamlined using AI, RPA, and intelligent workflows.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s9-adv2-li2">Instead of adding automation as an afterthought, it is embedded in the core design of our systems and products.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="advantage-item">
+                            <div><span class="advantage-icon" role="img" aria-label="Monitoring">📊</span>
+                                <span style=" margin-bottom: 10px;font-size: 1.45rem;" data-translate="s9-adv3-title">Transparent Monitoring</span><br><br>
+                                <div>
+                                    <ul class="bullet-points">
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s9-adv3-li1">We provide real-time, end-to-end visibility into systems, processes, and data through unified dashboards and reporting tools.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s9-adv3-li2">Clients can track progress, performance, risks, and compliance status without hidden gaps or delays.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="advantage-item">
+                            <div><span class="advantage-icon" role="img" aria-label="Architecture">🛠️</span>
+                                <span style=" margin-bottom: 10px;font-size: 1.45rem;" data-translate="s9-adv4-title">Modular Architecture</span><br><br>
+                                <div>
+                                    <ul class="bullet-points">
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s9-adv4-li1">We design software and systems with a modular, component-based architecture, allowing each part to function independently while integrating seamlessly into the whole.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s9-adv4-li2">This approach enables flexibility, scalability, and rapid enhancements without disrupting existing operations.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Target Market slide" data-section="slide10">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s10-h2">Target Market</h2>
+                    <div class="market-grid">
+                        <div class="market-item"><div style="font-size: 2rem; margin-bottom: 15px;" role="img" aria-label="Target">🎯</div><h3 data-translate="s10-m1">Mid-sized Enterprises</h3></div>
+                        <div class="market-item"><div style="font-size: 2rem; margin-bottom: 15px;" role="img" aria-label="Startup">🚀</div><h3 data-translate="s10-m2">Tech Startups</h3></div>
+                        <div class="market-item"><div style="font-size: 2rem; margin-bottom: 15px;" role="img" aria-label="Digital transformation">🏢</div><h3 data-translate="s10-m3">Digital Transformation</h3></div>
+                        <div class="market-item"><div style="font-size: 2rem; margin-bottom: 15px;" role="img" aria-label="Banking">🏦</div><h3 data-translate="s10-m4">Banking</h3></div>
+                        <div class="market-item"><div style="font-size: 2rem; margin-bottom: 15px;" role="img" aria-label="Healthcare">🏥</div><h3 data-translate="s10-m5">Healthcare</h3></div>
+                        <div class="market-item"><div style="font-size: 2rem; margin-bottom: 15px;" role="img" aria-label="Logistics">🚚</div><h3 data-translate="s10-m6">Logistics</h3></div>
+                        <div class="market-item"><div style="font-size: 2rem; margin-bottom: 15px;" role="img" aria-label="Finance">💰</div><h3 data-translate="s10-m7">Finance</h3></div>
+                        <div class="market-item"><div style="font-size: 2rem; margin-bottom: 15px;" role="img" aria-label="Manufacturing">🏭</div><h3 data-translate="s10-m8">Manufacturing</h3></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Business Model slide" data-section="slide11">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s11-h2">Business Model</h2>
+                    <div class="business-model-grid">
+                        <div class="model-item">
+                            <div><div style="font-size: 3rem; margin-bottom: 20px;" role="img" aria-label="Project">💼</div>
+                                <span style=" margin-bottom: 10px;font-size: 1.35rem;" data-translate="s11-m1-title">Project-Based Development</span><br><br>
+                                <div>
+                                    <ul class="bullet-points">
+                                        <li style="font-size: 1.17em;color: #fff;text-align: left;" data-translate="s11-m1-li1">We design software and systems with a modular, component-based architecture, allowing each part to function independently while integrating seamlessly into the whole.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: left;" data-translate="s11-m1-li2">This approach enables flexibility, scalability, and rapid enhancements without disrupting existing operations.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="model-item">
+                            <div><div style="font-size: 3rem; margin-bottom: 20px;" role="img" aria-label="Management">📋</div>
+                                <span style=" margin-bottom: 10px;font-size: 1.35rem;" data-translate="s11-m2-title">Ongoing Management Support</span><br><br>
+                                <div>
+                                    <ul class="bullet-points">
+                                        <li style="font-size: 1.17em;color: #fff;text-align: left;" data-translate="s11-m2-li1">We provide continuous support and maintenance services for software systems, ensuring smooth operations, updates, and issue resolution after deployment.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: left;" data-translate="s11-m2-li2">This model focuses on long-term client success, not just project delivery.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="model-item">
+                            <div><div style="font-size: 3rem; margin-bottom: 20px;" role="img" aria-label="Growth">📈</div>
+                                <span style=" margin-bottom: 10px;font-size: 1.35rem;" data-translate="s11-m3-title">AI Consulting Packages</span><br><br>
+                                <div>
+                                    <ul class="bullet-points">
+                                        <li style="font-size: 1.17em;color: #fff;text-align: initial;" data-translate="s11-m3-li1">We offer structured AI consulting services as packaged solutions tailored to client needs, from strategy and roadmap creation to implementation and optimization.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: initial;" data-translate="s11-m3-li2">Packages are designed to provide clarity, scalability, and measurable outcomes without committing to large, undefined projects.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Value Creation slide" data-section="slide12">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s12-h2">Where Future SoftTech Creates Real Value</h2>
+                    <div class="milestones">
+                        <div class="milestone">
+                            <div>
+                                <ul class="bullet-points">
+                                    <li style="font-size: 1.17em;color: #fff;text-align: left;" data-translate="s12-li1">For Banking & Finance, Reduced fraud & risks with AI-driven monitoring. Faster compliance reporting. Improved customer trust with secure digital services.</li>
+                                    <li style="font-size: 1.17em;color: #fff;text-align: left;" data-translate="s12-li2">For Retail, Personalized customer experience through AI-driven insights. Efficient inventory & demand forecasting. Secure, scalable digital commerce platforms.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Team slide" data-section="slide13">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <h2 data-translate="s13-h2">Team</h2>
+                    <div class="team-container">
+                        <div class="team-card">
+                            <div class="experience-badge">18+ Years</div>
+                            <img src="profile/images/nitin_edate_photo.jpg" alt="Nitin Edate - Founder & Tech Lead" class="member-photo"
+                                         style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 15px; display: block;"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="team-avatar" role="img" aria-label="Founder" style="display: none;">👨‍💼</div>
+                            <h3 data-translate="s13-name1">Nitin Edate</h3>
+                            <p class="role" data-translate="s13-role1">Founder & Tech Lead</p>
+                            <p>
+                                <div>
+                                    <ul class="bullet-points">
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s13-p1-li1">With over 18 years of experience in technology, primarily in the financial domain, Nitin leads full-stack development, infrastructure, and automation initiatives.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s13-p1-li2">He is deeply passionate about building scalable systems and implementing AI-driven solutions that transform business operations.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s13-p1-li3">Throughout his career, Nitin has successfully architected enterprise-grade software products, managed end-to-end product development lifecycles, and ensured high-quality, timely deliveries in leading companies.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s13-p1-li4">His expertise spans across modern tech stacks, cloud infrastructure, and intelligent automation, positioning him as a key driver of innovation and business impact.</li>
+                                    </ul>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="team-card">
+                            <div class="experience-badge">50+ Years</div>
+                            <img src="profile/images/narayan_edate_photo.jpg" alt="Narayan Edate - Legal Consultant & Advisor" class="member-photo"
+                                         style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin: 0 auto 15px; display: block;"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="team-avatar" role="img" aria-label="Legal consultant" style="display: none;">⚖️</div>
+                            <h3 data-translate="s13-name2">Narayan Edate</h3>
+                            <p class="role" data-translate="s13-role2">Legal Consultant & Advisor</p>
+                            <p>
+                                <div>
+                                    <ul class="bullet-points">
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s13-p2-li1">With over 50 years of extensive experience in the field of law, Narayan Edate is a highly accomplished legal professional.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s13-p2-li2">He holds LL.B. and LL.M. degrees with Gold Medal distinction, reflecting his academic excellence.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s13-p2-li3">He has served in various key roles at CIDCO including Law Officer, Estate Officer, and Marketing Manager, where he gained deep expertise in legal, regulatory, and estate matters.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s13-p2-li4">Post-retirement, he continues to contribute his legal acumen as a Consultant on the panels of leading banks such as ICICI Bank and Axis Bank, ensuring compliance and safeguarding institutional interests.</li>
+                                        <li style="font-size: 1.17em;color: #fff;text-align: justify;" data-translate="s13-p2-li5">His unparalleled experience, coupled with his commitment to legal precision, makes him a trusted authority in the domain of property and financial documentation.</li>
+                                    </ul>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" role="tabpanel" aria-label="Contact slide" data-section="slide14">
+                <img src="logo2222.png" alt="Future SoftTech Logo" class="slide-logo">
+                <div class="slide-content">
+                    <div class="cta-content">
+                        <div class="cta-title" data-translate="s14-cta">Let's Build the Future Together</div>
+                        <div class="contact-info">
+                            <div class="contact-item" data-translate="s14-email">📧 info@future-softtech.co.in</div>
+                            <div class="contact-item" data-translate="s14-web">🌐 future-softtech.co.in</div>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-item" data-translate="s14-phone">📞 +91 93265 60882 or +91 22-4481-6022</div>
+                            <div class="contact-item" data-translate="s14-addr">📍 Sector 17, Vashi, Navi Mumbai</div>
+                        </div>
+                    </div>
+                    <div class="professional-images" style="width: 800px;">
+                        <div class="professional-image" style="width: 800px; height: 200px;">
+                            <img src="location.png" alt="location" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="presentation-footer">
+            <div class="navigation-controls">
+                <button class="nav-btn" id="prev-btn" onclick="previousSlide()" aria-label="Previous slide">‹</button>
+                <div class="slide-thumbnails" id="thumbnails" role="tablist" aria-label="Slide navigation"></div>
+                <button class="nav-btn" id="next-btn" onclick="nextSlide()" aria-label="Next slide">›</button>
+            </div>
+            <div class="slide-info">
+                Use arrow keys or click buttons to navigate
+            </div>
+        </div>
+    </div>
+
+    <script src="profile/js/presentation-core.js"></script>
+    <script src="profile/js/ui.js"></script>
+    <script src="profile/js/events.js"></script>
+    <script src="profile/js/mobile.js"></script>
+    <script src="profile/js/translations.js"></script>
+    <script src="profile/js/audio-ui.js"></script>
+    <script src="profile/js/audio-core.js"></script>
+    
+    <script>
+    // Initialize the presentation
+    document.addEventListener('DOMContentLoaded', () => {
+        // Original presentation initialization
+        initThumbnails();
+        updateUI();
+        
+        const startMessageElement = document.getElementById('startMessage');
+
+        if (isMobileDevice()) {
+            initMobileFeatures();
+            if (startMessageElement) {
+                startMessageElement.textContent = 'Click on Play Button';
+            }
+        } else {
+            if (startMessageElement) {
+                startMessageElement.textContent = 'Click on Start Reading';
+            }
+        }
+
+        // New: Initialize the audio application
+        initializeAudioApp();
+    });
+    </script>
+</body>
+</html>

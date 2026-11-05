@@ -1,0 +1,20 @@
+{
+  "name": "future-softtech",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Future SoftTech website: React front end with a PostgreSQL-backed client login",
+  "scripts": {
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "dev": "concurrently -n api,web -c blue,cyan \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix client",
+    "start": "npm start --prefix server",
+    "db:init": "npm run db:init --prefix server",
+    "user:create": "npm run user:create --prefix server --"
+  },
+  "devDependencies": {
+    "concurrently": "9.1.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
